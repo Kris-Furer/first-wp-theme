@@ -1,0 +1,218 @@
+/*
+
+Theme Name: Kris'  Systema Theme
+
+Theme URI: http://yourwebsite.com/theme
+
+Author: Kris
+
+Author URI: http://yourwebsite.com/
+
+Description: This is my Second custom theme!
+
+Version: 1.0.0
+
+License: GNU General Public License v2 or later
+
+Tags: minimal, cool
+
+*/
+
+:root {
+  --red: #98252B;
+  --white: #ECE8DE;
+}
+
+body {
+  background: #eeeae1;
+  font-family: 'Sora', sans-serif;
+}
+h1,
+h2 {
+  color: var(--red);
+}
+a,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height:auto;
+}
+
+input {
+  padding:10px 5px;
+  background-color: var(--white)
+}
+
+.posttype {
+  display: inline-block;
+  text-transform: capitalize;
+  color: var(--red);
+
+
+  margin:7px 0;
+
+}
+
+
+/* Primary Nav Style :::::::::::::::::::::::::::::::::::::::::::::::::::: */
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--red);
+  padding: 0!important;
+  width: 100%;
+  color: var(--white);
+  align-items: center!important;
+  box-sizing: border-box;
+}
+
+nav a {
+  padding:  20px;
+  font-size: 18px;
+}
+
+.navbar-nav  {
+  display: flex!important;
+  flex-direction: row;
+}
+
+.navbar-nav ul  {
+  list-style: none;
+
+}
+
+.donate-btn a {
+  background:#eeeae1;
+  color: var(--red);
+  margin: 5px;
+  padding: 15px 50px;
+  text-align: center;
+}
+
+.donate-btn {
+  width:200px;
+}
+.logo {
+  min-width:200px;
+}
+/* Nav Styles ends:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: */
+
+/* Front Page specific Styles */
+.hero {
+  width: 100%;
+}
+
+.cta{
+  position: absolute;
+  top:55%;
+  left:3%;
+
+}
+.cta h1 {
+  font-size:45px;
+  font-weight: bold;
+  line-height: 1.7;
+  color: var(--white);
+}
+
+.cta .my-btn {
+  background-color: var(--red);
+  color:var(--white);
+}
+
+
+.my-btn {
+  display: inline-block;
+  border:none;
+  width:150px;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.red-fill {
+  background-color: var(--red);
+  color:var(--white);
+}
+
+.light-fill {
+  background-color: var(--white);
+  color: var(--red);
+}
+
+.footer-nav .my-btn {
+  border:none;
+}
+
+.supporter-section {
+  background-color: white;
+  padding:30px;
+}
+
+.supporter-logo {
+  min-width: 80px;
+  filter: grayscale(100%);
+  transition: 1s ease all;
+}
+
+.supporter-logo:hover {
+  filter: none;
+}
+
+.contact-body {
+  height:100vh;
+}
+
+.contact-container {
+  display: flex;
+  align-items: center;
+  margin: auto;
+}
+
+.object-cover {
+  object-fit: cover;
+  height:300px;
+}
+
+
+.single-img {
+  object-fit: cover;
+  max-width: 100%;
+  height:100%;
+}
+
+.recent-post-thumb {
+  width:100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+footer {
+  /* display: flex;
+  justify-content:space-around;
+  flex-wrap: wrap; */
+  padding: 5%;
+  font-weight: 100;
+  background-color: var(--red);
+  color: var(--white);
+  width: 100%;
+  height: auto;
+  position: relative;
+  bottom: 0;
+}
+
+.footer-heading {
+  font-size: 30px;
+}
+
+.footer-left a {
+  display: block;
+  padding: 5px 0
+}
+.footer-nav {
+  list-style: none;
+  padding-left: 0px;
+}
