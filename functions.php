@@ -59,7 +59,6 @@ register_nav_menus(['footer'=> 'footer']);
   add_action('admin_menu','add_blog_metabox');
 
   // save our fruit metabox
-
   function blog_save_metabox_data($post_id, $post){
     // check current permissions of the user
     $post_type = get_post_type_object($post->post_type);
@@ -87,9 +86,8 @@ register_nav_menus(['footer'=> 'footer']);
 
 
 
-
-  //  ::::::::::::::::::::::::::  Supporters Functionality:::::::::::::::::::::::::::::::::::::::::
-  // ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+//  ::::::::::::::::::::  Supporters Functionality  :::::::::::::::::::::
+// ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 function create_supporter_posttype() {
   // set up the arguments
   $args = array(
@@ -140,7 +138,175 @@ add_action('init','create_Posttype_taxonomy', 0);
 
 
 
+//:::::::::::::::::: Theme Customization :::::::::::::::::::::::::::::::::
+
+  // colors
+  function customise_colors($wp_customize) {
+    $wp_customize->add_section("site_colors", array(
+      "title" => "Site Colors",
+      "priority" => 0
+    ));
+
+    // ### Navbar background color
+    $wp_customize->add_setting("navbar_color", array(
+    "default" => ""
+    ));
+    $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'navbar_color', array(
+      'label' => 'Navbar Color',
+      'section' => 'site_colors',
+      'settings' => 'navbar_color'
+    )));
+
+
+    // ### Navbar background color
+    $wp_customize->add_setting("footer_color", array(
+    "default" => ""
+    ));
+    $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'footer_color', array(
+      'label' => 'Footer background color',
+      'section' => 'site_colors',
+      'settings' => 'footer_color'
+    )));
+
+
+    // ### Navlinks
+    $wp_customize->add_setting("navbar_link_color", array(
+      "default" => ""
+    ));
+    $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'navbar_link_color', array(
+      'label' => 'Navlink color',
+      'section' => 'site_colors',
+      'settings' => 'navbar_link_color'
+    )));
+
+
+    // ### Buttons
+    $wp_customize->add_setting("button_color", array(
+      "default" => ""
+    ));
+    $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'button_color', array(
+      'label' => 'Button Color',
+      'section' => 'site_colors',
+      'settings' => 'button_color'
+    )));
+
+    // ### Headings
+    $wp_customize->add_setting("heading_color", array(
+      "default" => ""
+    ));
+    $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'heading_color', array(
+      'label' => 'Heading color',
+      'section' => 'site_colors',
+      'settings' => 'heading_color'
+    )));
+
+    $wp_customize->add_setting("body_background_color", array(
+      "default" => ""
+    ));
+    $wp_customize->add_control( new WP_Customize_Color_Control($wp_customize, 'body_background_color', array(
+      'label' => 'Background Color',
+      'section' => 'site_colors',
+      'settings' => 'body_background_color'
+    )));
 
 
 
+  }
+
+  add_action("customize_register", "customise_colors");
+
+
+
+
+function generate_customization_css() {
+  $navbar_color = get_theme_mod('navbar_color');
+  $navlink_color = get_theme_mod('navbar_link_color');
+  $button_color = get_theme_mod('button_color');
+  $footer_color = get_theme_mod('footer_color');
+  $heading_color = get_theme_mod('heading_color');
+  $hero_image = get_theme_mod('hero_image');
+  $body_background_color= get_theme_mod('body_background_color');
+
+  if ( get_theme_mod( 'hero_image' ) ) {
+  				$$hero_image = get_theme_mod( 'hero_image' );
+  			} else {
+  				$hero_image = get_stylesheet_directory_uri() . 'images/sistema-hero.png';
+  			}
+
+  ?>
+    <style type="text/css">
+      body {
+        background-color:<?php echo $body_background_color ?>
+      }
+
+      nav  {
+        background-color:<?php echo $navbar_color?>;
+      }
+      nav a {
+        color:<?php echo $navlink_color?>;
+      }
+
+      .my-btn {
+        background-color:<?php echo $button_color?>;
+      }
+
+      footer {
+        background-color:<?php echo $footer_color?>;
+      }
+
+      h1, h2 {
+        color:<?php echo $heading_color?>;
+      }
+
+<?php
+ ?>
+
+      .hero-section {
+      background-image: url( <?php echo $hero_image; ?> );
+      }
+
+    </style>
+
+  <?php
+
+}
+add_action('wp_head', 'generate_customization_css');
+
+
+
+function customise_landing ($wp_customize) {
+  $wp_customize->add_section("landing_settings", array(
+    "title" => "Landing Page Settings",
+    "priority" => 0
+  ));
+
+  // add a new image upload setting
+  $wp_customize->add_setting("hero_image", array(
+    "default" => ""
+  ));
+
+  $wp_customize->add_control(new WP_Customize_Image_Control(
+    $wp_customize, 'hero_image', array(
+      'label' => 'Upload A Hero Image',
+      'settings' => 'hero_image',
+      'section' => 'landing_settings',
+      'priority' => 2000
+)));
+
+    $wp_customize->add_setting("call_to_action", array(
+    "default" => "Social Change Through Music Education"
+    ));
+
+    $wp_customize->add_control("call_to_action", array(
+      "label" => "Enter call to action text",
+      "section" => "landing_settings",
+      "settings" => "call_to_action",
+      "type" => "textarea"
+));
+
+
+
+
+}
+add_action("customize_register", "customise_landing");
 ?>

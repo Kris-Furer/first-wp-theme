@@ -1,9 +1,21 @@
 <?php get_header(); ?>
-<img class="hero mx-auto" src="<?php bloginfo('stylesheet_directory');?>/images/sistema-hero.png" alt="students" />
-<div class="cta">
-  <h1>Social Change Through <br>
-  Music Education</h1>
-  <div class="my-btn my-3">Support Us</div>
+
+<div class="hero-section">
+
+
+
+
+
+
+  <div class="cta">
+     <h1>
+       <?php echo get_theme_mod('call_to_action') ?>
+     </h1>
+     <h1>
+       <?php echo get_theme_mod('color_picker'); ?>
+     </h1>
+     <div class="my-btn my-3">Support Us</div>
+  </div>
 </div>
 <div class="container m-5 mx-auto">
 <!-- Show recent blog posts_per_page:::::::::::::::::::::::::::::::::::::::::::::::::::::::::-->
@@ -11,7 +23,7 @@
        // the query
        $the_query = new WP_Query( array(
          'post_type' => 'blog',
-          'posts_per_page' => 3,
+         'posts_per_page' => 3,
        ));
     ?>
     <h1 class="my-4">Recent Posts</h1>
